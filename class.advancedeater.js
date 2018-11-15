@@ -1,4 +1,4 @@
-class Advancedeater {
+class Advancedeater extends Base{
     constructor(x, y, index) {
         super(x,y,index);
         this.energy = Math.round(random(5, 15));

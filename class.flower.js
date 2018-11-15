@@ -1,4 +1,4 @@
-class Flower {
+class Flower extends Base{
     constructor(x, y, index) {
         super(x, y, index);
         this.mult = Math.round(random(10, 17));

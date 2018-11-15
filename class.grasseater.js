@@ -1,4 +1,4 @@
-class GrassEater {
+class GrassEater extends Base {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = Math.round(random(0, 7));
@@ -79,8 +79,11 @@ class GrassEater {
             this.energy++;
 
         }
-        else {
-            this.move();
+        else{
+            if(weather !=0 ){
+                this.move();
+            }
+            
         }
     }
 

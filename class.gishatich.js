@@ -1,4 +1,4 @@
-class Gishatich {
+class Gishatich extends Base{
 
     constructor(x, y, index) {
         super(x, y, index);

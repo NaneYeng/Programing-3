@@ -1,3 +1,8 @@
+// var winter = 0;
+// var spring = 1;
+// var summer = 2;
+// var autumn = 3;
+var weather = 0;
 
 var side = 20;
 
@@ -61,14 +66,31 @@ function setup() {
 var count = 0;
 function draw() {
     count++;
+    if(count<51){
+        weather=0;
+        console.log("winter");
+    }
+    else if(count<101){
+        weather=1;
+        console.log("spring");
+    }
+    else if(count<151){
+        weather=2;
+        console.log("summer");
+    }
+    else if(count<201){
+        weather=3;
+        console.log("autumn");
+    }
+    else{
+        count=0;
+    }
     drawMatrix();
 
     for (var i in grassArr) {
         grassArr[i].mul();
-        if (count %5  == 0) {
-            
+        if (count %5  == 0) {    
             grassArr[i].becomeFlower();
-            
         }
     }
     for (var i in eaterArr) {
@@ -88,12 +110,6 @@ function draw() {
 }
 
 
-
-
-
-
-
-
 /**/
 
 function drawMatrix() {
@@ -101,7 +117,18 @@ function drawMatrix() {
         for (var x = 0; x < matrix[y].length; x++) {
 
             if (matrix[y][x] == 1) {
-                fill("green");
+                if(weather == 0){
+                    fill("white");
+                }
+                else if(weather == 1){
+                    fill("#cfe08d");
+                }
+                else if(weather == 2){
+                    fill("#459305");
+                }
+                else{
+                    fill("#9e7d2c")
+                }
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 0) {
