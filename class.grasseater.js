@@ -1,7 +1,7 @@
 class GrassEater extends Base {
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = Math.round(random(0, 7));
+        this.energy = Math.round(random(5, 9));
        
     }
 
@@ -45,7 +45,7 @@ class GrassEater extends Base {
         if (this.energy <= 0) {
             this.die();
         }
-        else if (this.energy >= 9) {
+        else if (this.energy >= 10) {
             this.mul();
         }
 
@@ -117,7 +117,7 @@ class GrassEater extends Base {
 
             var newEater = new GrassEater(newX, newY, 1);
             eaterArr.push(newEater);
-            this.energy = Math.round(random(0, 4));
+            this.energy = Math.round(random(2, 4));
         }
     }
 

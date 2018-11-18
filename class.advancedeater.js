@@ -57,10 +57,10 @@ class Advancedeater extends Base{
             this.x = newX;
         }
         this.energy--;
-        if (this.energy <= 5) {
+        if (this.energy <= 3) {
             this.die();
         }
-        else if (this.energy >= 14) {
+        else if (this.energy >= 10) {
             this.mul();
         }
 
@@ -73,6 +73,7 @@ class Advancedeater extends Base{
         var randomCell = random(emptyCells);
         var grassCell = this.chooseCell(3);
         var grassrandom = random(grassCell);
+        
         if (randomCell) {
             var newX = randomCell[0];
             var newY = randomCell[1];
@@ -93,11 +94,14 @@ class Advancedeater extends Base{
             this.y = newY;
             this.x = newX;
 
+            this.energy++;
+
 
             //  console.log(this.energy);
 
         }
         else if (grassrandom) {
+            if(weather != 0 && weather != 1){
             var newX = grassrandom[0];
             var newY = grassrandom[1];
 
@@ -119,10 +123,12 @@ class Advancedeater extends Base{
             this.energy++;
 
         }
+    }
         else {
             this.move();
         }
-    }
+    
+}
 
 
 
@@ -143,7 +149,7 @@ class Advancedeater extends Base{
 
     mul() {
         this.energy++;
-        var emptyCells = this.chooseCell(0);
+        var emptyCells = this.chooseCell(1);
         var randomCell = random(emptyCells);
         if (randomCell) {
             var newX = randomCell[0];
@@ -155,6 +161,12 @@ class Advancedeater extends Base{
             var newAdvanced = new Advancedeater(newX, newY, 1);
             advancedArr.push(newAdvanced);
             this.energy = Math.round(random(0, 4));
+            for (var i in grassArr) {
+                if (this.x == grassArr[i].x && this.y == grassArr[i].y) {
+                    grassArr.splice(i, 1);
+                    break;
+                }
+            }
         }
     }
 

@@ -17,6 +17,8 @@ var folwerArr = [];
 var advancedArr = [];
 
 var matrix = [];
+var bbbb  = document.getElementById("bbbb")
+bbbb.style.height = 0
 
 function setup() {
 
@@ -66,30 +68,30 @@ function setup() {
 var count = 0;
 function draw() {
     count++;
-    if(count<51){
-        weather=0;
+    if (count < 11) {
+        weather = 0;
         console.log("winter");
     }
-    else if(count<101){
-        weather=1;
+    else if (count < 21) {
+        weather = 1;
         console.log("spring");
     }
-    else if(count<151){
-        weather=2;
+    else if (count < 31) {
+        weather = 2;
         console.log("summer");
     }
-    else if(count<201){
-        weather=3;
+    else if (count < 41) {
+        weather = 3;
         console.log("autumn");
     }
-    else{
-        count=0;
+    else {
+        count = 0;
     }
     drawMatrix();
 
     for (var i in grassArr) {
         grassArr[i].mul();
-        if (count %5  == 0) {    
+        if (count % 5 == 0) {
             grassArr[i].becomeFlower();
         }
     }
@@ -103,10 +105,23 @@ function draw() {
         folwerArr[i].changeEnergy();
     }
     for (var i in advancedArr) {
-        advancedArr[i].eat();
-    }   
+        if (weather == 0) {
+            advancedArr[i].move();
+        }
+        else {
+            advancedArr[i].eat();
+        }
+    }
 
+    console.log(bbbb.style.height)
+    bbbb.style.height=parseInt(bbbb.style.height.split("px")[0]) + 20 +"px"
 
+    function timedRefresh(timeoutPeriod) {
+        setTimeout("location.reload(true);",timeoutPeriod);
+    }
+    
+    window.onload = timedRefresh(18000);
+    
 }
 
 
@@ -117,16 +132,16 @@ function drawMatrix() {
         for (var x = 0; x < matrix[y].length; x++) {
 
             if (matrix[y][x] == 1) {
-                if(weather == 0){
+                if (weather == 0) {
                     fill("white");
                 }
-                else if(weather == 1){
+                else if (weather == 1) {
                     fill("#cfe08d");
                 }
-                else if(weather == 2){
+                else if (weather == 2) {
                     fill("#459305");
                 }
-                else{
+                else {
                     fill("#9e7d2c")
                 }
                 rect(x * side, y * side, side, side);
@@ -148,7 +163,16 @@ function drawMatrix() {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 5) {
-                fill("pink");
+                if (weather == 1) {
+                    fill("pink");
+                }
+                else if (weather == 2) {
+                    fill("#ad0d15");
+                }
+                else if (weather == 3) {
+                    fill("#e5743b");
+                }
+
                 rect(x * side, y * side, side, side);
             }
         }

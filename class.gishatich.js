@@ -1,8 +1,8 @@
-class Gishatich extends Base{
+class Gishatich extends Base {
 
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = 5;
+        this.energy = Math.round(random(4, 7));
 
     }
 
@@ -44,7 +44,7 @@ class Gishatich extends Base{
         if (this.energy <= 0) {
             this.die();
         }
-        else if (this.energy >= 7) {
+        else if (this.energy >= 10) {
             this.mul();
         }
 
@@ -55,6 +55,8 @@ class Gishatich extends Base{
     eat() {
         var emptyCells = this.chooseCell(2);
         var randomCell = random(emptyCells);
+        var advCells = this.chooseCell(5);
+        var advrandomCell = random(advCells);
 
         if (randomCell) {
             var newX = randomCell[0];
@@ -112,7 +114,7 @@ class Gishatich extends Base{
 
             var newgishat = new Gishatich(newX, newY, 1);
             gishatArr.push(newgishat);
-            this.energy = Math.round(random(0, 5));
+            this.energy = Math.round(random(1, 5));
         }
     }
 
