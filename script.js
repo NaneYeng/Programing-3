@@ -28,7 +28,24 @@ function setup() {
     for (var y = 0; y < n; ++y) {
         matrix[y] = [];
         for (var x = 0; x < m; ++x) {
-            matrix[y][x] = Math.round(random(0, 4));
+            // matrix[y][x] = Math.round(random(0, 4));
+            var r = random(400);
+            if(r<20){
+                r = 0;
+            }
+            else if(21<r  && r<60){
+                r = 1;
+            }
+            else if(61<r && r<300){
+                r = 2;
+            }
+            else if(301<r && r<350){
+                r = 3;
+            }
+            else if(351<r && r<401){
+                r = 4;
+            }
+            matrix[y][x] = r;
         }
     }
 

@@ -3,7 +3,7 @@ class Gishatich extends Base {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = Math.round(random(4, 7));
-
+        this.gender = Math.round(random(1, 2));
     }
 
     getNewCoordinates() {
@@ -55,8 +55,8 @@ class Gishatich extends Base {
     eat() {
         var emptyCells = this.chooseCell(2);
         var randomCell = random(emptyCells);
-        var advCells = this.chooseCell(5);
-        var advrandomCell = random(advCells);
+        // var advCells = this.chooseCell(5);
+        // var advrandomCell = random(advCells);
 
         if (randomCell) {
             var newX = randomCell[0];
