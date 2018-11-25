@@ -1,0 +1,25 @@
+{
+  "name": "programing-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "class.advancedeater.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaneYeng/Programing-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NaneYeng/Programing-3/issues"
+  },
+  "homepage": "https://github.com/NaneYeng/Programing-3#readme"
+}

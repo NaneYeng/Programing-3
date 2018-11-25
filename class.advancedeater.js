@@ -2,6 +2,8 @@ class Advancedeater extends Base{
     constructor(x, y, index) {
         super(x,y,index);
         this.energy = Math.round(random(5, 15));
+        this.gender = Math.round(random(1, 2));
+
     }
 
     getNewCoordinates() {
@@ -148,17 +150,32 @@ class Advancedeater extends Base{
     }
 
     mul() {
+        var theothers = []
         this.energy++;
         var emptyCells = this.chooseCell(1);
         var randomCell = random(emptyCells);
-        if (randomCell) {
+        var friends = this.chooseCell(4);
+
+        for (var i in friends) {
+            for (var j in advancedArr) {
+                if (friends[i][0] == advancedArr[j].x && friends[i][1] == advancedArr[j].y && advancedArr[j].gender != this.gender) {
+                    theothers.push(friends[i])
+                }
+            }
+        }
+
+
+        var randomFriend = random(theothers);
+
+        if (randomFriend && randomCell) {
+            console.log(randomFriend)
             var newX = randomCell[0];
             var newY = randomCell[1];
 
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = 4;
 
-            var newAdvanced = new Advancedeater(newX, newY, 1);
+            var newAdvanced = new Advancedeater(newX, newY, 4);
             advancedArr.push(newAdvanced);
             this.energy = Math.round(random(0, 4));
             for (var i in grassArr) {
@@ -167,7 +184,34 @@ class Advancedeater extends Base{
                     break;
                 }
             }
+            // noLoop()
         }
+
     }
 
 }
+
+
+
+
+
+// this.energy++;
+//         var emptyCells = this.chooseCell(1);
+//         var randomCell = random(emptyCells);
+//         if (randomCell) {
+//             var newX = randomCell[0];
+//             var newY = randomCell[1];
+
+//             matrix[this.y][this.x] = 0;
+//             matrix[newY][newX] = 4;
+
+//             var newAdvanced = new Advancedeater(newX, newY, 1);
+//             advancedArr.push(newAdvanced);
+//             this.energy = Math.round(random(0, 4));
+//             for (var i in grassArr) {
+//                 if (this.x == grassArr[i].x && this.y == grassArr[i].y) {
+//                     grassArr.splice(i, 1);
+//                     break;
+//                 }
+//             }
+//         }

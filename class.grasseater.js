@@ -105,30 +105,35 @@ class GrassEater extends Base {
     }
 
     mul() {
+        var others = []
         this.energy++;
         var emptyCells = this.chooseCell(0);
-        var friends = this.chooseCell(2);
         var randomCell = random(emptyCells);
-    //    console.log(friends);
+        var friends = this.chooseCell(2);
 
-
-        for (var i in eaterArr) {
-            for (var j in friends) {
-                if (eaterArr[i].gender != friends[j].gender ) {
-                    if (randomCell) {
-                        var newX = randomCell[0];
-                        var newY = randomCell[1];
-
-                        matrix[this.y][this.x] = 0;
-                        matrix[newY][newX] = 2;
-
-                        var newEater = new GrassEater(newX, newY, 1);
-                        eaterArr.push(newEater);
-                        this.energy = Math.round(random(2, 4));
-                    }
-
+        for (var i in friends) {
+            for (var j in eaterArr) {
+                if (friends[i][0] == eaterArr[j].x && friends[i][1] == eaterArr[j].y && eaterArr[j].gender != this.gender) {
+                    others.push(friends[i])
                 }
             }
+        }
+
+
+        var randomFriend = random(others)
+
+        if (randomFriend && randomCell) {
+            console.log(randomFriend)
+            var newX = randomCell[0];
+            var newY = randomCell[1];
+
+            matrix[this.y][this.x] = 0;
+            matrix[newY][newX] = 2;
+
+            var newEater = new GrassEater(newX, newY, 2);
+            eaterArr.push(newEater);
+            this.energy = Math.round(random(2, 4));
+            // noLoop()
         }
 
     }

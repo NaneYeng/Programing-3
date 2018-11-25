@@ -112,7 +112,7 @@ class Gishatich extends Base {
             matrix[this.y][this.x] = 0;
             matrix[newY][newX] = 3;
 
-            var newgishat = new Gishatich(newX, newY, 1);
+            var newgishat = new Gishatich(newX, newY, 3);
             gishatArr.push(newgishat);
             this.energy = Math.round(random(1, 5));
         }

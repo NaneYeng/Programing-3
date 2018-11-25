@@ -2,6 +2,17 @@
 // var spring = 1;
 // var summer = 2;
 // var autumn = 3;
+var socket = io.connect('http://localhost:4444');
+var statistics = {
+    "timestamp": "",
+    "framecount": 0,
+    "becomeFlower":0,   //grass
+    "die":0,            //grassEater
+    "mul":0,            //gishatich
+    "energy":0,         //flower
+    "move":0           //AdvEater
+}
+
 var weather = 0;
 
 var side = 20;
@@ -29,20 +40,20 @@ function setup() {
         matrix[y] = [];
         for (var x = 0; x < m; ++x) {
             // matrix[y][x] = Math.round(random(0, 4));
-            var r = random(400);
-            if(r<20){
+            var rand = random(400);
+            if(rand<20){
                 r = 0;
             }
-            else if(21<r  && r<60){
+            else if(21<rand  && rand<100){
                 r = 1;
             }
-            else if(61<r && r<300){
+            else if(101<rand && rand<300){
                 r = 2;
             }
-            else if(301<r && r<350){
+            else if(301<rand && rand<350){
                 r = 3;
             }
-            else if(351<r && r<401){
+            else if(351<rand && rand<401){
                 r = 4;
             }
             matrix[y][x] = r;
@@ -84,6 +95,11 @@ function setup() {
 }
 var count = 0;
 function draw() {
+    if (frameCount % 60 === 0) {
+        statistics.timestamp = (new Date()).toString();
+        statistics.framecount = frameCount;
+        socket.emit("send data", statistics);
+    }
     count++;
     if (count < 11) {
         weather = 0;
@@ -137,7 +153,7 @@ function draw() {
         setTimeout("location.reload(true);",timeoutPeriod);
     }
     
-    window.onload = timedRefresh(18000);
+    window.onload = timedRefresh(21000);
     
 }
 
