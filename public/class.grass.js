@@ -37,18 +37,19 @@ class Grass extends Base {
                 matrix[this.y + 1][this.x] = 5;
                 matrix[this.y - 1][this.x] = 5;
 
-                function becflow() {
+                
+            }
+            function becflow() {
                     statistics.becomeFlower++;
 
                 }
                 becflow();
-            }
         }
     }
     becomeTree() {
-        
             var emptyCells = this.chooseCell(1);
-            if (emptyCells.length == 8) {
+            // console.log(emptyCells.length);
+            if (emptyCells.length == 3) {
 
 
                 for (var i in grassArr) {
@@ -59,7 +60,8 @@ class Grass extends Base {
                 }
                 var newTree= new Tree(this.x, this.y, 6);
                 treeArr.push(newTree);
-
+                matrix[this.y][this.x] = 6;
+                // console.log(this.x,this.y);
            }
         
     }

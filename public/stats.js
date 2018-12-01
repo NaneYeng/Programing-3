@@ -5,7 +5,7 @@ var table = document.getElementById("statistics");
 setInterval(function(){
     
     socket.emit("get stats", []);
-}, 3000);
+});
 
 
 socket.on("send stats",function(statistics){

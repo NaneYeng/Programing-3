@@ -31,9 +31,10 @@ var advancedArr = [];
 var treeArr =[];
 
 var matrix = [];
+
 var bbbb  = document.getElementById("bbbb")
 bbbb.style.height = 0
-
+/**/
 function setup() {
 
     var n = Math.round(random(15, 30));
@@ -91,21 +92,25 @@ function setup() {
                 folwerArr.push(flow);
             }
             else if (matrix[y][x] == 6) {
-                var newTree = new Tree(x, y, 5);
+                var newTree = new Tree(x, y, 6);
                 treeArr.push(newTree);
             }
         }
     }
 
-
-
 }
+
+
 var count = 0;
+
+
 function draw() {
-    if (frameCount % 60 === 0) {
+    // console.log(frameCount);
+    if (frameCount % 50 == 0) {
         statistics.timestamp = (new Date()).toString();
         statistics.framecount = frameCount;
         socket.emit("send data", statistics);
+        // console.log(frameCount);
     }
     count++;
     if (count < 11) {
@@ -134,7 +139,7 @@ function draw() {
         if (count % 5 == 0) {
             grassArr[i].becomeFlower();
         }
-        if (weather==3) {
+        if (weather==0) {
             grassArr[i].becomeTree();
         }
     }
@@ -160,7 +165,7 @@ function draw() {
     }
     
 
-    console.log(bbbb.style.height)
+    // console.log(bbbb.style.height)
     bbbb.style.height=parseInt(bbbb.style.height.split("px")[0]) + 20 +"px"
 
     function timedRefresh(timeoutPeriod) {
@@ -223,7 +228,7 @@ function drawMatrix() {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 6) {
-                fill("#874a01");
+                fill("#0c4a6b");
                 rect(x * side, y * side, side, side);
             }
         }
